@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Design System</title>
+  <link rel="shortcut icon" type="image/ico" href="/media/favicon.ico"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <!-- allow dark mode theme-->
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
+  />
+  <style>
+    :root {
+      --docsifytabs-border-color: #ededed;
+      --docsifytabs-tab-highlight-color: #0a87da;
+      --docsify-example-panels-document-width: 100%; /* Remove margins */
+      --docsify-example-panels-left-panel-width: 70%; /* bit more for left */
+      --docsify-example-panels-right-panel-width: 30%; /* bit less for right */
+      --docsify-example-panels-title-background: grey;
+      --sidebar-nav-link-text-decoration--active: underline;
+      --sidebar-nav-link-text-decoration--hover: underline;
+      /* --sidebar-nav-pagelink-background-image: none; */
+      /* --sidebar-nav-pagelink-background-position--collapse: none; */
+      /* --sidebar-nav-pagelink-background-image--collapse: none; */
+    }
+    .sidebar-nav li>a:before, .sidebar-nav li>strong:before {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'design-system',
+      repo: 'https://git.ecd.axway.org/amplify/design-system-2020/',
+      maxLevel: 5,
+      subMaxLevel: 3,
+      relativePath: true,
+      loadSidebar: true, // '_sidebar.md',
+      // alias: {
+      //   '/.*/_sidebar.md': '/_sidebar.md',
+      // },
+      // auto2top: true,
+      autoHeader: true,
+      logo: '/media/logo_axway.png',
+      coverpage: 'coverpage.md',
+      homepage: 'design-intro.md',
+      themeColor: '#FF7F2A', // #0A87DA
+      search: {
+        paths: 'auto',
+        placeholder: {
+          '/': 'Search'
+        }
+      },
+      // themeable: {
+      //     readyTransition : true, // default
+      //     responsiveTables: true  // default
+      // },
+      tabs: {
+        persist: true,
+        sync: true,
+        theme: 'classic',
+        tabComments: true,
+        tabHeadings: true
+      },
+      copyCode: {
+        buttonText : 'Copy to clipboard',
+        errorText  : 'Error',
+        successText: 'Copied'
+      },
+      // allow dark mode theme
+      darkMode: {
+        dark: {
+          background: "#1c2022",
+          toggleBtnBg: "#34495e",
+          textColor: "#b4b4b4" // #F7F7F7 or white
+        },
+        light: {
+          background: "white",
+          toggleBtnBg: "#FF7F2A",  // #0A87DA
+          // textColor: "black"
+        }
+      },
+      plugins: [
+          (hook, vm) => {
+            hook.beforeEach((md) => {
+              const url = `https://git.ecd.axway.org/-/ide/project/amplify/design-system-2020/edit/master/-/docs/${vm.route.file}`;
+              const edit = `[Edit on Gitlab](${url})`;
+              if (md.match(/^#\s+.*$/m)) {
+                // document has a title already
+                return md.replace(/^#\s+(.*)$/m, `# $1\n${edit}`);
+              }
+              return `${edit}\n\n${md}`;
+            });
+        }
+      ],
+    }
+
+  </script>
+  <!-- docsify-->
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="https://unpkg.com/docsify-themeable"></script>
+
+  <!-- docsify-tabs (latest) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <!-- docsify-example-panels (latest) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-example-panels"></script>
+
+  <!-- allow dark mode theme-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//unpkg.com/docsify-copy-code"></script>
+  <!-- <script src="//unpkg.com/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script> -->
+ </body>
+</body>
+</html>

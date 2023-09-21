@@ -1,0 +1,15 @@
+image: node:10
+
+pages:
+  # bring back to master once the CLI stuff are done
+  only:
+    - master
+  except:
+    - schedules
+  script:
+    - mkdir .public
+    - cp -r docs/. .public
+    - mv .public public
+  artifacts:
+    paths:
+    - public
